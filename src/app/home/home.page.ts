@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Tarea} from '../tarea'
+import {Pokemon} from '../pokemon'
 import { FirestoreService } from '../firestore.service';
 import { Router } from '@angular/router';
 
@@ -10,62 +10,62 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  tareaEditando = {} as Tarea;
-  arrayColeccionTareas: any = [{
+  pokemonEditando = {} as Pokemon;
+  arrayColeccionPokemon: any = [{
     id: "",
-    tarea: {} as Tarea
+    pokemon: {} as Pokemon
   }];
-  idTareaSelec: string = "";
+  idPokemonSelec: string = "";
 
   constructor(private firestoreService: FirestoreService, private router: Router) {
-    this.obtenerListaTareas();
+    this.obtenerListaPokemons();
   }
 
 
 
-  obtenerListaTareas() {
+  obtenerListaPokemons() {
     // Hacer una consulta cada vez que se detectan nuevos datos en la BD
-    this.firestoreService.consultar("tareas").subscribe((datosRecibidos) => {
+    this.firestoreService.consultar("pokemons").subscribe((datosRecibidos) => {
       // Limpiar el array para que no se dupliquen los datos anteriores
-      this.arrayColeccionTareas = [];
+      this.arrayColeccionPokemon = [];
       // Recorrer todos los datos recibidos de la BD
       datosRecibidos.forEach((datosTarea) => {
         // Cada elemento de la BD se almacena en el array que se muestra en pantalla
-        this.arrayColeccionTareas.push({
+        this.arrayColeccionPokemon.push({
           id: datosTarea.payload.doc.id,
-          tarea: datosTarea.payload.doc.data()
+          pokemon: datosTarea.payload.doc.data()
         })
       });
     });
   }
 
-  selecTarea(idTarea:string, tareaSelec:Tarea) {
-    this.tareaEditando = tareaSelec;
-    this.idTareaSelec = idTarea;
-    this.router.navigate(['detalle', this.idTareaSelec])
+  selecPokemon(idTarea:string, tareaSelec:Pokemon) {
+    this.pokemonEditando = tareaSelec;
+    this.idPokemonSelec = idTarea;
+    this.router.navigate(['detalle', this.idPokemonSelec])
   }
 
   clicBotonInsertar() {
-    this.firestoreService.insertar("tareas", this.tareaEditando).then(() => {
+    this.firestoreService.insertar("pokemons", this.pokemonEditando).then(() => {
       console.log('Tarea creada correctamente!');
-      this.tareaEditando= {} as Tarea;
+      this.pokemonEditando= {} as Pokemon;
     }, (error) => {
       console.error(error);
     });
   }
 
   clicBotonBorrar() {
-    this.firestoreService.borrar("tareas", this.idTareaSelec).then(() => {
+    this.firestoreService.borrar("tareas", this.idPokemonSelec).then(() => {
       console.log('Tarea borrada correctamente!');
-      this.tareaEditando= {} as Tarea;
-      this.idTareaSelec = "";
+      this.pokemonEditando= {} as Pokemon;
+      this.idPokemonSelec = "";
     }, (error) => {
       console.error(error);
     });
   }
 
   clicBotonModificar(){
-    this.firestoreService.modificar("tareas", this.idTareaSelec, this.tareaEditando).then(() => {
+    this.firestoreService.modificar("tareas", this.idPokemonSelec, this.pokemonEditando).then(() => {
       console.log('Tarea editada correctamente!');
     }, (error) => {
       console.error(error);

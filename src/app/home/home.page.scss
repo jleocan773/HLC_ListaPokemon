@@ -18,7 +18,6 @@
   line-height: 22px;
 
   color: #8c8c8c;
-
   margin: 0;
 }
 
@@ -30,4 +29,16 @@
   display: block;
   margin: 0 auto;
   max-width: 200px; 
+}
+
+ion-fab-button {
+  --background: #b7f399;
+  --background-activated: #87d361;
+  --background-hover: #a3e681;
+  --color: black;
+}
+
+h2{
+  font-weight: bold;
+  font-style: italic;
 }

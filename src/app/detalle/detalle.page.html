@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Detalles</ion-title>
+    <ion-title>Detalles de {{ document.data.mote }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,16 +11,25 @@
     </ion-toolbar>
   </ion-header>
 
+  <img src="{{ document.data.downloadURL }}" alt="Icono del Pokémon" width="100" height="100"> 
+  <h3>Especie</h3>
   <ion-item>
-    <ion-label position="floating">Título</ion-label>
-    <br>
-    <ion-input [(ngModel)]="document.data.titulo" name="titulo" type="text"></ion-input>
+    <ion-input [(ngModel)]="document.data.especie" name="especie" type="text"></ion-input>
   </ion-item>
 
+  <h3>Mote</h3>
   <ion-item>
-    <ion-label position="floating">Descripción</ion-label>
-    <br>
-    <ion-input [(ngModel)]="document.data.descripcion" name="descripcion" type="text"></ion-input>
+    <ion-input [(ngModel)]="document.data.mote" name="mote" type="text"></ion-input>
+  </ion-item>
+
+  <h3>Tipos</h3>
+  <ion-item>
+    <ion-input [(ngModel)]="document.data.tipos" name="tipos" type="text"></ion-input>
+  </ion-item>
+
+  <h3>Nivel</h3>
+  <ion-item>
+    <ion-input [(ngModel)]="document.data.nivel" name="nivel" type="number"></ion-input>
   </ion-item>
 
   <ion-button id="boton__borrado" *ngIf="!isNuevo" (click)="clicBotonBorrar()">Borrar tarea</ion-button>

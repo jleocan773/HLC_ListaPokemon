@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../firestore.service';
-import { Tarea } from '../tarea';
+import { Pokemon } from '../pokemon';
 import { AlertController } from '@ionic/angular';
 import {
   NavController,
@@ -24,7 +24,7 @@ export class DetallePage implements OnInit {
 
   document: any = {
     id: '',
-    data: {} as Tarea,
+    data: {} as Pokemon,
   };
 
   constructor(
@@ -51,16 +51,16 @@ export class DetallePage implements OnInit {
       } else {
         //Si la id no es "nuevo", realizar una consulta a Firestore para obtener los detalles del documento seleccionado
         this.firestoreService
-          .consultarPorId('tareas', this.id)
+          .consultarPorId('pokemons', this.id)
           .subscribe((resultado: any) => {
             if (resultado.payload.data() != null) {
               //Si se encuentra el documento, asignar la información a la propiedad 'document'
               this.document.id = resultado.payload.id;
               this.document.data = resultado.payload.data();
-              console.log(this.document.data.titulo);
+              console.log(this.document.data.nombre);
             } else {
-              //Si no se encuentra el documento, inicializar "document" con una tarea vacía
-              this.document.data = {} as Tarea;
+              //Si no se encuentra el documento, inicializar "document" con un Pokemon vacío
+              this.document.data = {} as Pokemon;
             }
           });
       }
@@ -71,9 +71,9 @@ export class DetallePage implements OnInit {
   }
 
   clicBotonInsertar() {
-    this.firestoreService.insertar('tareas', this.document.data).then(
+    this.firestoreService.insertar('pokemons', this.document.data).then(
       () => {
-        console.log('Tarea insertada correctamente');
+        console.log('Pokemon insertado correctamente');
         this.navCtrl.navigateBack('/home');
       },
       (error) => {
@@ -84,10 +84,10 @@ export class DetallePage implements OnInit {
 
   clicBotonModificar() {
     this.firestoreService
-      .modificar('tareas', this.document.id, this.document.data)
+      .modificar('pokemons', this.document.id, this.document.data)
       .then(
         () => {
-          console.log('Tarea editada correctamente');
+          console.log('Pokemon editado correctamente');
           this.navCtrl.navigateBack('/home');
         },
         (error) => {
@@ -98,7 +98,7 @@ export class DetallePage implements OnInit {
 
   async clicBotonBorrar() {
     const alert = await this.alertController.create({
-      header: 'Confirmar borrado de tarea',
+      header: 'Confirmar borrado de pokemon',
       buttons: [
         {
           text: 'Cancelar',
@@ -112,9 +112,9 @@ export class DetallePage implements OnInit {
           role: 'confirm',
           handler: () => {
             //Si se presiona confirmar, manejar el borrado
-            this.firestoreService.borrar('tareas', this.document.id).then(
+            this.firestoreService.borrar('pokemons', this.document.id).then(
               () => {
-                console.log('Tarea borrada correctamente');
+                console.log('Pokemon borrado correctamente');
                 this.navCtrl.navigateBack('/home');
               },
               (error) => {
@@ -215,7 +215,7 @@ export class DetallePage implements OnInit {
         //Eliminar la downloadURL del documento en Firestore
         this.document.data.downloadURL = null; // Puedes establecerlo en null o eliminar la propiedad, según tus necesidades
         await this.firestoreService.modificar(
-          'tareas',
+          'pokemons',
           this.document.id,
           this.document.data
         );
