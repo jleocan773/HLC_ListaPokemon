@@ -1,0 +1,1 @@
+Mirar si se puede cambiar el formato de las fotos para que en lugar de jpeg sean png, ya que quiero usarlas como iconos.
