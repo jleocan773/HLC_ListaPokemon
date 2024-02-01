@@ -1,44 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Detalles de {{ document.data.mote }}</ion-title>
+    <ion-title class="ion-text-center">Detalles de {{ document.data.mote }} <br> <img class="iconoPoke"
+        src="{{ document.data.icono }}" alt="Icono del Pokémon"></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-text-center">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Detalles</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <img src="{{ document.data.downloadURL }}" alt="Icono del Pokémon" width="100" height="100"> 
   <h3>Especie</h3>
   <ion-item>
     <ion-input [(ngModel)]="document.data.especie" name="especie" type="text"></ion-input>
   </ion-item>
-
+  
   <h3>Mote</h3>
   <ion-item>
     <ion-input [(ngModel)]="document.data.mote" name="mote" type="text"></ion-input>
   </ion-item>
-
+  
   <h3>Tipos</h3>
   <ion-item>
     <ion-input [(ngModel)]="document.data.tipos" name="tipos" type="text"></ion-input>
   </ion-item>
-
+  
   <h3>Nivel</h3>
   <ion-item>
     <ion-input [(ngModel)]="document.data.nivel" name="nivel" type="number"></ion-input>
   </ion-item>
+    
+  <div class="botonera">
 
-  <ion-button id="boton__borrado" *ngIf="!isNuevo" (click)="clicBotonBorrar()">Borrar tarea</ion-button>
-  <ion-button *ngIf="!isNuevo" (click)="clicBotonModificar()">Modificar tarea</ion-button>
-  <ion-button *ngIf="isNuevo" (click)="clicBotonInsertar()">Añadir tarea</ion-button>
-  <ion-button [routerLink]="['/home']">Volver</ion-button>
-  <ion-button (click)="seleccionarImagen()">Seleccionar Imagen</ion-button>
-  <ion-button (click)="subirImagen()">Subir Imagen</ion-button>
-  <ion-button (click)="eliminarImagen(document.data.downloadURL)">Eliminar Imagen</ion-button>
+    <div class="botonesAccion">
+      <ion-button color="danger" id="boton__borrado" *ngIf="!isNuevo" (click)="clicBotonBorrar()">Eliminar
+        Pokémon</ion-button>
+      <ion-button color="success" *ngIf="!isNuevo" (click)="clicBotonModificar()">Modificar Pokémon</ion-button>
+      <ion-button color="tertiary" *ngIf="isNuevo" (click)="clicBotonInsertar()">Añadir Pokémon</ion-button>
+      <ion-button color="primary" [routerLink]="['/home']">Volver</ion-button>
+    </div>
+
+    <div class="botonesImagen">
+      <ion-button color="primary" (click)="seleccionarImagen()">Seleccionar Imagen</ion-button>
+      <ion-button color="success" (click)="subirImagen()">Subir Imagen</ion-button>
+      <ion-button color="danger" (click)="eliminarImagen(document.data.downloadURL)">Eliminar Imagen</ion-button>
+    </div>
+  </div>
+
 
 
   <img *ngIf="document.data.downloadURL" [src]="document.data.downloadURL" alt="Imagen seleccionada">

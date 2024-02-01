@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Pokemons Chupistásticas
+      Lista de Pokémon
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,16 +9,16 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Pokemons Chupistásticas</ion-title>
+      <ion-title size="large">Lista de Pokémon</ion-title>
     </ion-toolbar>
   </ion-header>
-  <h1>LISTA DE POKEMON</h1>
+  <h1>LISTA DE POKÉMON</h1>
   <ion-list>
     <ion-item *ngFor="let documentPokemon of arrayColeccionPokemon"
       (click)="selecPokemon(documentPokemon.id, documentPokemon.pokemon)">
       <ion-grid>
         <ion-row>
-          <h2>{{ documentPokemon.pokemon.especie }}</h2>
+          <h2>{{ documentPokemon.pokemon.especie }}</h2> <img class="iconoPoke" src="{{ documentPokemon.pokemon.icono }}" alt="Icono del Pokémon"> 
         </ion-row>
         <ion-row>
           <h4>Mote: {{ documentPokemon.pokemon.mote }}</h4>
