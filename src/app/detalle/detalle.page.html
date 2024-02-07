@@ -16,22 +16,22 @@
   <ion-item>
     <ion-input [(ngModel)]="document.data.especie" name="especie" type="text"></ion-input>
   </ion-item>
-  
+
   <h3>Mote</h3>
   <ion-item>
     <ion-input [(ngModel)]="document.data.mote" name="mote" type="text"></ion-input>
   </ion-item>
-  
+
   <h3>Tipos</h3>
   <ion-item>
     <ion-input [(ngModel)]="document.data.tipos" name="tipos" type="text"></ion-input>
   </ion-item>
-  
+
   <h3>Nivel</h3>
   <ion-item>
     <ion-input [(ngModel)]="document.data.nivel" name="nivel" type="number"></ion-input>
   </ion-item>
-    
+
   <div class="botonera">
 
     <div class="botonesAccion">
@@ -44,7 +44,7 @@
 
     <div class="botonesImagen">
       <ion-button color="primary" (click)="seleccionarImagen()">Seleccionar Imagen</ion-button>
-      <ion-button color="success" (click)="subirImagen()">Subir Imagen</ion-button>
+      <ion-button color="success" *ngIf="imagenSelec" (click)="subirImagen()">Subir Imagen</ion-button>
       <ion-button color="danger" (click)="eliminarImagen(document.data.downloadURL)">Eliminar Imagen</ion-button>
     </div>
   </div>
