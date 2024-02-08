@@ -44,13 +44,11 @@
 
     <div class="botonesImagen">
       <ion-button color="primary" (click)="seleccionarImagen()">Seleccionar Imagen</ion-button>
-      <ion-button color="success" *ngIf="imagenSelec" (click)="subirImagen()">Subir Imagen</ion-button>
       <ion-button color="danger" (click)="eliminarImagen(document.data.downloadURL)">Eliminar Imagen</ion-button>
     </div>
   </div>
 
 
-
-  <img *ngIf="document.data.downloadURL" [src]="document.data.downloadURL" alt="Imagen seleccionada">
+  <img *ngIf="imagenSelec || document.data.downloadURL" [src]="imagenSelec || document.data.downloadURL" alt="Imagen seleccionada">
 
 </ion-content>

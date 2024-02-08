@@ -70,49 +70,6 @@ export class DetallePage implements OnInit {
     }
   }
 
-  async subirImagen(): Promise<void> {
-    return new Promise<void>(async (resolve, reject) => {
-      //Mensaje de espera mientras se suba la imagen
-      const loading = await this.loadingController.create({
-        message: 'Subiendo imagen...',
-      });
-      //Mensaje de finalización de subida
-      const toast = await this.toastController.create({
-        message: 'Imagen subida correctamente',
-        duration: 3000,
-      });
-
-      //Carpeta donde se guardará la imagen
-      let nombreCarpeta = 'imagenes';
-
-      //Mostrar el mensaje de espera
-      loading.present();
-
-      //Asignar el nombre de la imagen en función de la hora actual, para evitar duplicados
-      let nombreImagen = `${new Date().getTime()}`;
-      //Llamar al método que sube la imagen al Storage
-      this.firestoreService
-        .subirImagenBase64(nombreCarpeta, nombreImagen, this.imagenSelec)
-        .then((snapshot) => {
-          snapshot.ref.getDownloadURL().then((downloadURL) => {
-            //Asignar la URL de descarga de la imagen
-            console.log('downloadURL: ' + downloadURL);
-            this.document.data.downloadURL = downloadURL;
-            //MOstrar el mensaje de finalización de la subida
-            toast.present();
-            //Ocultar mensaje de espera
-            loading.dismiss();
-            //Resolve la promesa una vez que la imagen se haya subido correctamente
-            resolve();
-          });
-        })
-        .catch((error) => {
-          //En caso de error, rechaza la promesa
-          reject(error);
-        });
-    });
-  }
-
   clicBotonInsertar() {
     this.firestoreService.insertar('pokemons', this.document.data).then(
       () => {
@@ -126,26 +83,17 @@ export class DetallePage implements OnInit {
   }
 
   clicBotonModificar() {
-    //Llamar a subirImagen antes de modificar el documento
-    this.subirImagen()
-      .then(() => {
-        //Una vez que la imagen se haya subido correctamente, proceder con la modificación del documento
-        this.firestoreService
-          .modificar('pokemons', this.document.id, this.document.data)
-          .then(
-            () => {
-              console.log('Pokemon editado correctamente');
-              this.navCtrl.navigateBack('/home');
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
-      })
-      .catch((error) => {
-        //Manejar errores de subida de imagen
-        console.error('Error al subir la imagen:', error);
-      });
+    this.firestoreService
+      .modificar('pokemons', this.document.id, this.document.data)
+      .then(
+        () => {
+          console.log('Pokemon editado correctamente');
+          this.navCtrl.navigateBack('/home');
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 
   async clicBotonBorrar() {
@@ -218,6 +166,41 @@ export class DetallePage implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  async subirImagen() {
+    //Mensaje de espera mientras se suba la imagen
+    const loading = await this.loadingController.create({
+      message: 'Subiendo imagen...',
+    });
+    //Mensaje de finalización de subida
+    const toast = await this.toastController.create({
+      message: 'Imagen subida correctamente',
+      duration: 3000,
+    });
+
+    //Carpeta donde se guardará la imagen
+    let nombreCarpeta = 'imagenes';
+
+    //Mostrar el mensaje de espera
+    loading.present();
+
+    //Asignar el nombre de la imagen en función de la hora actual, para evitar duplicados
+    let nombreImagen = `${new Date().getTime()}`;
+    //Llamar al método que sube la imagen al Storage
+    this.firestoreService
+      .subirImagenBase64(nombreCarpeta, nombreImagen, this.imagenSelec)
+      .then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((downloadURL) => {
+          //Asignar la URL de descarga de la imagen
+          console.log('downloadURL: ' + downloadURL);
+          this.document.data.downloadURL = downloadURL;
+          //MOstrar el mensaje de finalización de la subida
+          toast.present();
+          //Ocultar mensaje de espera
+          loading.dismiss();
+        });
+      });
   }
 
   async eliminarImagen(fileURL: string) {
