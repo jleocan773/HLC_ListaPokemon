@@ -35,6 +35,8 @@
   <div class="botonera">
 
     <div class="botonesAccion">
+      <ion-icon name="trash" color="danger" id="boton__borrado" *ngIf="!isNuevo" (click)="clicBotonBorrar()" size="large"></ion-icon>
+
       <ion-button color="danger" id="boton__borrado" *ngIf="!isNuevo" (click)="clicBotonBorrar()">Eliminar
         Pokémon</ion-button>
       <ion-button color="success" *ngIf="!isNuevo" (click)="clicBotonModificar()">Modificar Pokémon</ion-button>

@@ -41,6 +41,11 @@ ion-content {
   align-items: center;
 }
 
+#boton__borrado {
+  cursor: pointer;
+}
+
+
 //Para cambiar los botones en pantallas pequeñas
 @media (max-width: 950px) {
   ion-content .botonera {
