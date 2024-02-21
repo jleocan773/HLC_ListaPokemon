@@ -70,6 +70,10 @@ export class DetallePage implements OnInit {
     }
   }
 
+  navegarAHome() {
+    this.navCtrl.navigateBack('/home');
+  }
+
   async subirImagen(): Promise<void> {
     return new Promise<void>(async (resolve, reject) => {
       //Mensaje de espera mientras se suba la imagen
@@ -126,26 +130,42 @@ export class DetallePage implements OnInit {
   }
 
   clicBotonModificar() {
-    //Llamar a subirImagen antes de modificar el documento
-    this.subirImagen()
-      .then(() => {
-        //Una vez que la imagen se haya subido correctamente, proceder con la modificación del documento
-        this.firestoreService
-          .modificar('pokemons', this.document.id, this.document.data)
-          .then(
-            () => {
-              console.log('Pokemon editado correctamente');
-              this.navCtrl.navigateBack('/home');
-            },
-            (error) => {
-              console.error(error);
-            }
-          );
-      })
-      .catch((error) => {
-        //Manejar errores de subida de imagen
-        console.error('Error al subir la imagen:', error);
-      });
+    //Verificar si hay una nueva imagen seleccionada
+    if (this.imagenSelec) {
+      //Si hay una nueva imagen, subirla antes de modificar el documento
+      this.subirImagen()
+        .then(() => {
+          //Una vez que la imagen se haya subido correctamente, proceder con la modificación del documento
+          this.firestoreService
+            .modificar('pokemons', this.document.id, this.document.data)
+            .then(
+              () => {
+                console.log('Pokemon editado correctamente');
+                this.navCtrl.navigateBack('/home');
+              },
+              (error) => {
+                console.error(error);
+              }
+            );
+        })
+        .catch((error) => {
+          //Manejar errores de subida de imagen
+          console.error('Error al subir la imagen:', error);
+        });
+    } else {
+      //Si no hay una nueva imagen seleccionada, proceder directamente con la modificación del documento
+      this.firestoreService
+        .modificar('pokemons', this.document.id, this.document.data)
+        .then(
+          () => {
+            console.log('Pokemon editado correctamente');
+            this.navCtrl.navigateBack('/home');
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+    }
   }
 
   async clicBotonBorrar() {

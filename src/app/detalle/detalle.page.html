@@ -32,25 +32,31 @@
     <ion-input [(ngModel)]="document.data.nivel" name="nivel" type="number"></ion-input>
   </ion-item>
 
+  <ion-icon name="arrow-back-outline" color="primary" class="icono__boton boton__volver"
+    (click)="navegarAHome()"></ion-icon>
+
   <div class="botonera">
 
     <div class="botonesAccion">
-      <ion-icon name="trash" color="danger" id="boton__borrado" *ngIf="!isNuevo" (click)="clicBotonBorrar()" size="large"></ion-icon>
 
-      <ion-button color="danger" id="boton__borrado" *ngIf="!isNuevo" (click)="clicBotonBorrar()">Eliminar
-        Pokémon</ion-button>
-      <ion-button color="success" *ngIf="!isNuevo" (click)="clicBotonModificar()">Modificar Pokémon</ion-button>
+      <ion-icon name="trash" color="danger" class="icono__boton boton__borrado" *ngIf="!isNuevo"
+        (click)="clicBotonBorrar()"></ion-icon>
+
+      <ion-icon name="checkmark-outline" color="success" class="icono__boton boton__modificar" *ngIf="!isNuevo"
+        (click)="clicBotonModificar()"></ion-icon>
+
       <ion-button color="tertiary" *ngIf="isNuevo" (click)="clicBotonInsertar()">Añadir Pokémon</ion-button>
-      <ion-button color="primary" [routerLink]="['/home']">Volver</ion-button>
     </div>
 
     <div class="botonesImagen">
-      <ion-button color="primary" (click)="seleccionarImagen()">Seleccionar Imagen</ion-button>
-      <ion-button color="danger" (click)="eliminarImagen(document.data.downloadURL)">Eliminar Imagen</ion-button>
+      <img src="../../assets/icon/addPic.png" class="icono__boton boton_addPic" (click)="seleccionarImagen()">
+      <img src="../../assets/icon/removePic.png" class="icono__boton boton_removePic"
+        (click)="eliminarImagen(document.data.downloadURL)">
     </div>
+
   </div>
 
-
-  <img *ngIf="imagenSelec || document.data.downloadURL" [src]="imagenSelec || document.data.downloadURL" alt="Imagen seleccionada">
+  <img *ngIf="imagenSelec || document.data.downloadURL" [src]="imagenSelec || document.data.downloadURL"
+    alt="Imagen seleccionada">
 
 </ion-content>
