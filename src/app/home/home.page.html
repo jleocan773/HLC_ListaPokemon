@@ -18,7 +18,8 @@
       (click)="selecPokemon(documentPokemon.id, documentPokemon.pokemon)">
       <ion-grid>
         <ion-row>
-          <h2>{{ documentPokemon.pokemon.especie }}</h2> <img class="iconoPoke" src="{{ documentPokemon.pokemon.icono }}" alt="Icono del Pokémon"> 
+          <h2>{{ documentPokemon.pokemon.especie }}</h2> <img class="iconoPoke"
+            src="{{ documentPokemon.pokemon.icono }}" alt="Icono del Pokémon">
         </ion-row>
         <ion-row>
           <h4>Mote: {{ documentPokemon.pokemon.mote }}</h4>
@@ -37,5 +38,6 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <ion-button (click)="share()"> Compartir </ion-button>
 
 </ion-content>
