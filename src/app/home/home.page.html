@@ -1,8 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Lista de Pokémon
-    </ion-title>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" class="navigationTabs">
+
+        <ion-tab-button tab="home">
+          <ion-icon name="home-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="contacto">
+          <ion-icon name="megaphone-outline"></ion-icon>
+          <ion-label>Contacto</ion-label>
+        </ion-tab-button>
+
+      </ion-tab-bar>
+    </ion-tabs>
   </ion-toolbar>
 </ion-header>
 
@@ -38,6 +50,7 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
   <ion-button (click)="share()"> Compartir </ion-button>
 
 </ion-content>
