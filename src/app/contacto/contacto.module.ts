@@ -8,6 +8,9 @@ import { ContactoPageRoutingModule } from './contacto-routing.module';
 
 import { ContactoPage } from './contacto.page';
 
+import { CallNumber } from '@awesome-cordova-plugins/call-number/ngx';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +18,8 @@ import { ContactoPage } from './contacto.page';
     IonicModule,
     ContactoPageRoutingModule
   ],
-  declarations: [ContactoPage]
+  declarations: [ContactoPage],
+  providers: [CallNumber]
+
 })
 export class ContactoPageModule {}

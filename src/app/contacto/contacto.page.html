@@ -45,14 +45,22 @@
           <ion-label position="floating">Comentario</ion-label>
           <ion-textarea class="textareaComentario" name="comentario" rows="5"></ion-textarea>
         </ion-item>
-        
-
 
       </ion-list>
-
       <ion-button expand="full" color="primary">Enviar</ion-button>
-
     </ion-card-content>
+
+    <!-- Línea separadora con div y estilos de borde -->
+    <div class="separator"></div>
+
+
+
+    <h1>Llamar</h1>
+    <h1>Horario Mañana: 9:00 - 15:00h | Horario Tarde: 17:00 - 20:00h</h1>
+    <ion-button (click)="hacerLlamada()">
+      <ion-icon name="call-outline"></ion-icon>
+    </ion-button>
+
   </ion-card>
 
 </ion-content>
