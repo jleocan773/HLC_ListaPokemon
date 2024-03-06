@@ -5,25 +5,54 @@
 
         <ion-tab-button tab="home">
           <ion-icon name="home-outline"></ion-icon>
-          <ion-label>Home</ion-label>
+          <ion-label>Inicio</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="contacto">
           <ion-icon name="megaphone-outline"></ion-icon>
           <ion-label>Contacto</ion-label>
         </ion-tab-button>
-
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Contacto</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <h1>Contacto</h1>
+
+
+  <h1>Formulario de Contacto</h1>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" name="nombre"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" name="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Asunto</ion-label>
+          <ion-input type="text" name="asunto"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Comentario</ion-label>
+          <ion-textarea class="textareaComentario" name="comentario" rows="5"></ion-textarea>
+        </ion-item>
+        
+
+
+      </ion-list>
+
+      <ion-button expand="full" color="primary">Enviar</ion-button>
+
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

@@ -5,7 +5,7 @@
 
         <ion-tab-button tab="home">
           <ion-icon name="home-outline"></ion-icon>
-          <ion-label>Home</ion-label>
+          <ion-label>Inicio</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="contacto">
@@ -45,12 +45,16 @@
       </ion-grid>
     </ion-item>
   </ion-list>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab class="addButton">
     <ion-fab-button [routerLink]="['/detalle/nuevo']">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
-  <ion-button (click)="share()"> Compartir </ion-button>
+  <ion-fab class="shareButton">
+    <ion-fab-button>
+      <ion-icon name="share-social-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
