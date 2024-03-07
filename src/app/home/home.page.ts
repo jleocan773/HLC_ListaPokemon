@@ -53,7 +53,7 @@ export class HomePage {
     this.SocialSharing.share(
       'Mensaje para compartir',
       'Asunto opcional',
-      "Archivo opcional",
+      'Archivo opcional',
       'https://www.example.com'
     )
       .then(() => {
