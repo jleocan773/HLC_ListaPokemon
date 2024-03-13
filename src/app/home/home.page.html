@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-tabs>
-      <ion-tab-bar slot="bottom" class="navigationTabs">
+      <ion-tab-bar slot="bottom">
 
         <ion-tab-button tab="home">
           <ion-icon name="home-outline"></ion-icon>
@@ -12,7 +12,6 @@
           <ion-icon name="megaphone-outline"></ion-icon>
           <ion-label>Contacto</ion-label>
         </ion-tab-button>
-
       </ion-tab-bar>
     </ion-tabs>
   </ion-toolbar>
@@ -26,12 +25,12 @@
   </ion-header>
   <h1>LISTA DE POKÉMON</h1>
   <ion-list>
-    <ion-item *ngFor="let documentPokemon of arrayColeccionPokemon"
-      (click)="selecPokemon(documentPokemon.id, documentPokemon.pokemon)">
+    <ion-item *ngFor="let documentPokemon of arrayColeccionPokemon" (click)="selecPokemon(documentPokemon.id, documentPokemon.pokemon)">
       <ion-grid>
         <ion-row>
-          <h2>{{ documentPokemon.pokemon.especie }}</h2> <img class="iconoPoke"
-            src="{{ documentPokemon.pokemon.icono }}" alt="Icono del Pokémon">
+          <h2>{{ documentPokemon.pokemon.especie }}</h2>
+          <!-- Utiliza *ngIf para mostrar el icono solo si existe -->
+          <img class="iconoPoke" *ngIf="documentPokemon.pokemon.icono" src="{{ documentPokemon.pokemon.icono }}" alt="Icono del Pokémon">
         </ion-row>
         <ion-row>
           <h4>Mote: {{ documentPokemon.pokemon.mote }}</h4>
@@ -56,5 +55,4 @@
       <ion-icon name="share-social-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>

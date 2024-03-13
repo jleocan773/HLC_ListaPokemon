@@ -18,42 +18,42 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="page-content">
 
+    <h1>Formulario de Contacto</h1>
 
-  <h1>Formulario de Contacto</h1>
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-list>
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input type="text" name="nombre"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Nombre</ion-label>
-          <ion-input type="text" name="nombre"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" name="email"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Email</ion-label>
-          <ion-input type="email" name="email"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label position="floating">Asunto</ion-label>
+            <ion-input type="text" name="asunto"></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Asunto</ion-label>
-          <ion-input type="text" name="asunto"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label position="floating">Comentario</ion-label>
+            <ion-textarea class="textareaComentario" name="comentario" rows="5"></ion-textarea>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Comentario</ion-label>
-          <ion-textarea class="textareaComentario" name="comentario" rows="5"></ion-textarea>
-        </ion-item>
+        </ion-list>
+        <ion-button expand="full" color="primary">Enviar</ion-button>
+      </ion-card-content>
 
-      </ion-list>
-      <ion-button expand="full" color="primary">Enviar</ion-button>
-    </ion-card-content>
+      <!-- Línea separadora con div y estilos de borde -->
+      <div class="separator"></div>
 
-    <!-- Línea separadora con div y estilos de borde -->
-    <div class="separator"></div>
-
-
+    </ion-card>
 
     <h1>Llamar</h1>
     <h1>Horario Mañana: 9:00 - 15:00h | Horario Tarde: 17:00 - 20:00h</h1>
@@ -61,6 +61,14 @@
       <ion-icon name="call-outline"></ion-icon>
     </ion-button>
 
-  </ion-card>
+    <!-- Línea separadora con div y estilos de borde -->
+    <div class="separator"></div>
 
+
+
+    <div class="map-container">
+      <div id="mapId"></div>
+    </div>
+
+  </div>
 </ion-content>

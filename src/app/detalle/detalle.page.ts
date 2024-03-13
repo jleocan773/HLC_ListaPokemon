@@ -118,15 +118,38 @@ export class DetallePage implements OnInit {
   }
 
   clicBotonInsertar() {
-    this.firestoreService.insertar('pokemons', this.document.data).then(
-      () => {
-        console.log('Pokemon insertado correctamente');
-        this.navCtrl.navigateBack('/home');
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    //Verificar si hay una nueva imagen seleccionada
+    if (this.imagenSelec) {
+      //Si hay una nueva imagen, subirla antes de insertar el documento
+      this.subirImagen()
+        .then(() => {
+          //Una vez que la imagen se haya subido correctamente, proceder con la inserción del nuevo documento
+          this.firestoreService.insertar('pokemons', this.document.data).then(
+            () => {
+              console.log('Pokemon insertado correctamente');
+              this.navCtrl.navigateBack('/home');
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+        })
+        .catch((error) => {
+          //Manejar errores de subida de imagen
+          console.error('Error al subir la imagen:', error);
+        });
+    } else {
+      //Si no hay una nueva imagen seleccionada, proceder directamente con la inserción del documento
+      this.firestoreService.insertar('pokemons', this.document.data).then(
+        () => {
+          console.log('Pokemon insertado correctamente');
+          this.navCtrl.navigateBack('/home');
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
   }
 
   clicBotonModificar() {
